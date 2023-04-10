@@ -6,23 +6,41 @@ const timezone = document.getElementById('time-zone');
 const countryEl = document.getElementById('country');
 const weatherForecastEl = document.getElementById('weather-forecast');
 const currentTempEl = document.getElementById('current-temp');
-const city_name = document.getElementById('city_name');
-const citybtn = document.getElementById('citybtn');
-
+// const city_name = document.getElementById('city_name');
+// const citybtn = document.getElementById('citybtn');
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 const API_KEY ='49cc8c821cd2aff9af04c9f98c36eb74';
 
-citybtn.addEventListener('click', function (e) {
-    
-        const cityName =city_name.value;
-        getWeatherDatabycity (cityName)
-        console.log(cityName)
-        city_name.value = '';
+document.body.style.backgroundImage = "url('morning_image.jpg')";
+const time=new Date();
+console.log(time)
+const hour = time.getHours();
+const Time_12h = hour >= 13 ? hour %12: hour;
+const ampm = hour >=12 ? 'PM' : 'AM'
+if(Time_12h>=6 && Time_12h<12 && ampm=="AM"){
+    document.body.style.backgroundImage = "url('./morning_image.jpg')";
+}else if(Time_12h>=0 && Time_12h<5&& ampm=="PM"){
+    document.body.style.backgroundImage = "url('./afternoon_image.jpg')";
+}else if(Time_12h>=5 && Time_12h<7&& ampm=="PM"){
+    document.body.style.backgroundImage = "url('./evening_image.jpg')";
+}else if(Time_12h>=7 && Time_12h<0&& ampm=="PM"){
+    document.body.style.backgroundImage = "url('./night_image.jpg')";
+}else if(Time_12h>=0 && Time_12h<=5&& ampm=="AM"){
+    document.body.style.backgroundImage = "url('./night_image.jpg')";
+}
 
-});
+
+// citybtn.addEventListener('click', function (e) {
+    
+//         const cityName =city_name.value;
+//         getWeatherDatabycity (cityName)
+//         console.log(cityName)
+//         city_name.value = '';
+
+// });
 
 
 setInterval(() => {
@@ -40,27 +58,31 @@ setInterval(() => {
     dateEl.innerHTML = days[day] + ', ' + date+ ' ' + months[month]
 
 }, 1000);
-
+// let lat;
+// let log;
 getWeatherData()
 function getWeatherData () {
     navigator.geolocation.getCurrentPosition((success) => {
         let {latitude, longitude } = success.coords;
+        // lat=latitude;
+        // log=longitude;
         lodergif.style.display='block';
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
+        console.log(data)
         showWeatherData(data);
         lodergif.style.display='none';
         })
 
     })
 }
-function getWeatherDatabycity (cityName) {
-        lodergif.style.display='block';
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
-        console.log(data)
-        showWeatherData(data);
-        lodergif.style.display='none';
-        })
-}
+// function getWeatherDatabycity (cityName) {
+//         lodergif.style.display='block';
+//         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
+//         console.log(data)
+//         showWeatherData(data);
+//         lodergif.style.display='none';
+//         })
+// }
 
 function showWeatherData (data){
     let {humidity, pressure, sunrise, sunset, wind_speed} = data.current;
@@ -123,6 +145,4 @@ function showWeatherData (data){
 
     weatherForecastEl.innerHTML = otherDayForcast;
 }
-
-
 

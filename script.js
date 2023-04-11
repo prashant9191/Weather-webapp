@@ -54,7 +54,7 @@ if (Time_12h >= 6 && Time_12h < 12 && ampm == "AM") {
 }
 
 citybtn.addEventListener("click", function (e) {
-  const cityName = city_name.value;
+  const cityName = city_name.value.trim();
 
   getWeatherDatabycity(cityName);
   city_name.value = "";

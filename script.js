@@ -90,12 +90,12 @@ function getWeatherData() {
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         showWeatherData(data);
         lodergif.style.display = "none";
       });
   });
 }
-//
 function getWeatherDatabycity(city_Name) {
   lodergif.style.display = "block";
   fetch(
@@ -103,6 +103,7 @@ function getWeatherDatabycity(city_Name) {
   )
     .then((res) => res.json())
     .then((data) => {
+        console.log(data)
       lodergif.style.display = "none";
       showWeatherData_by_city(data);
     });
@@ -111,10 +112,17 @@ function getWeatherDatabycity(city_Name) {
 function showWeatherData(data) {
   let { humidity, pressure, sunrise, sunset, wind_speed } = data.current;
 
-  timezone.innerHTML = `${data.timezone}`;
+  timezone.innerHTML = `TimeZone : ${data.timezone}`;
   countryEl.innerHTML = data.lat + "N " + data.lon + "E";
 
-  currentWeatherItemsEl.innerHTML = `<div class="weather-item">
+  currentWeatherItemsEl.innerHTML = `
+  <div class="weather-item">
+        <div>Current Temp:</div>
+        <div>${
+            data.current.feels_like
+          }&#176;C</div>
+    </div>
+  <div class="weather-item">
         <div>Humidity</div>
         <div>${humidity}%</div>
     </div>
@@ -199,16 +207,23 @@ function showWeatherData_by_city(data) {
   timezone.innerHTML = `${data.city.name}`;
   countryEl.innerHTML = data.city.coord.lat + "N " + data.city.coord.lon + "E";
 
-  currentWeatherItemsEl.innerHTML = `<div class="weather-item">
-        <div>Humidity</div>
+  currentWeatherItemsEl.innerHTML = `
+  <div class="weather-item">
+        <div>Current Temp:</div>
+        <div>${kelvinToCelsius(
+            data.list[0].main.feels_like
+          )}&#176;C</div>
+    </div>
+  <div class="weather-item">
+        <div>Humidity:</div>
         <div>${humidity}%</div>
     </div>
     <div class="weather-item">
-        <div>Pressure</div>
+        <div>Pressure:</div>
         <div>${pressure}</div>
     </div>
     <div class="weather-item">
-        <div>Wind Speed</div>
+        <div>Wind Speed:</div>
         <div>${wind_speed}</div>
     </div>
 
@@ -225,7 +240,7 @@ function showWeatherData_by_city(data) {
     `;
 
   let otherDayForcast = "";
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 8; i++) {
     if (today_i > 6) {
       today_i = 0;
     }
@@ -244,7 +259,7 @@ function showWeatherData_by_city(data) {
                   data.list[0].main.temp_min
                 )}&#176;C</div>
                 <div class="temp">Day - ${kelvinToCelsius(
-                  data.list[0].main.temp
+                  data.list[0].main.temp_max
                 )}&#176;C</div>
             </div>
             
@@ -263,7 +278,7 @@ function showWeatherData_by_city(data) {
                   data.list[i].main.temp_min
                 )}&#176;C</div>
                 <div class="temp">Day - ${kelvinToCelsius(
-                  data.list[i].main.temp
+                  data.list[i].main.temp_max
                 )}&#176;C</div>
             </div>
             

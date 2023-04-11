@@ -10,8 +10,8 @@ body {
   background: url("./default_img.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  overflow: hidden;
-  height: 100vh;
+  /* overflow: hidden; */
+  /* height: 100vh; */
   font-family: "Poppins", sans-serif;
 }
 #copyright{
@@ -159,7 +159,7 @@ input::placeholder{
   padding: 25px 0;
   padding-left: 10px;
   padding-right: 10px;
-  position: fixed;
+  position: relative;
   bottom: 0;
   display: flex;
   color: white;

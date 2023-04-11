@@ -94,11 +94,11 @@ input::placeholder{
 
 .date-container #am-pm {
   font-size: 30px;
-  margin-left: 20px;
 }
 
 .date-container .date {
   font-size: 30px;
+  font-weight: bold;
 }
 
 .place-container {
@@ -107,7 +107,7 @@ input::placeholder{
 
 .place-container .time-zone {
   font-size: 30px;
-  font-weight: 100;
+  font-weight: bold;
 }
 
 .place-container .country {
@@ -122,7 +122,9 @@ input::placeholder{
   padding: 20px;
   border-radius: 10px;
   margin: 10px 0;
-  border: 1px solid #eee;
+  border: 2px solid #ffffff;
+  font-size: 129px;
+  font-weight: bold;
 }
 
 .current-info .others .weather-item {
@@ -138,7 +140,9 @@ input::placeholder{
 
 .future-forecast {
   background: rgba(24, 24, 27, 0.8);
-  padding: 25px;
+  padding: 25px 0;
+  padding-left: 10px;
+  padding-right: 10px;
   position: fixed;
   bottom: 0;
   display: flex;
@@ -153,12 +157,13 @@ input::placeholder{
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #eee;
+  border: 1px solid #c91b1b;
   border-radius: 10px;
   padding: 15px;
   padding-right: 40px;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .future-forecast .today .day {
@@ -166,6 +171,7 @@ input::placeholder{
   background: #3c3c44;
   border-radius: 50px;
   text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .future-forecast .today .temp {
@@ -183,7 +189,7 @@ input::placeholder{
   align-items: center;
   justify-content: center;
   margin: 0 10px;
-  border: 1px solid #eee;
+  border: 1px solid #ffffff;
   padding: 15px;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.2);
@@ -199,6 +205,7 @@ input::placeholder{
 .weather-forecast .weather-forecast-item .temp {
   font-weight: 100;
   font-size: 12px;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 730px) {

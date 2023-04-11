@@ -14,6 +14,22 @@ body {
   height: 100vh;
   font-family: "Poppins", sans-serif;
 }
+#copyright{
+  color: white;
+  position: relative;
+  top: 10px;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#copyright p{
+  font-size: 11px;
+  margin-right:5px ;
+}
 
 #lodergif{
     position: absolute;
@@ -36,7 +52,7 @@ body {
 .container {
   padding: 20px 70px;
   color: #fff;
-  margin-top: 20px;
+  margin-top:0px;
 }
 #cityinput_cont {
   width: 100%;
@@ -123,7 +139,7 @@ input::placeholder{
   border-radius: 10px;
   margin: 10px 0;
   border: 2px solid #ffffff;
-  font-size: 129px;
+  font-size: 25px;
   font-weight: bold;
 }
 

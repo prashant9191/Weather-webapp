@@ -7,11 +7,11 @@
 }
 
 body {
-  background: url("./default_img.jpg");
+  background: url("./morning_img_2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   /* overflow: hidden; */
-  /* height: 100vh; */
+  height: 100vh;
   font-family: "Poppins", sans-serif;
 }
 #copyright{
@@ -50,9 +50,10 @@ body {
     border-radius: 50%;
 }
 .container {
-  padding: 20px 70px;
+  padding: 10px 30px;
   color: #fff;
   margin-top:0px;
+  border: 2px solid red;
 }
 #cityinput_cont {
   width: 100%;
@@ -99,13 +100,14 @@ input::placeholder{
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 20px;
-  padding: 0 5%;
 }
 .date-container {
   font-weight: 100;
 }
 .date-container .time {
-  font-size: 70px;
+  font-size: 30px;
+  color: #E64A19;
+  font-weight: bold;
 }
 
 .date-container #am-pm {
@@ -113,7 +115,8 @@ input::placeholder{
 }
 
 .date-container .date {
-  font-size: 30px;
+  color: #607D8B;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -122,7 +125,7 @@ input::placeholder{
 }
 
 .place-container .time-zone {
-  font-size: 30px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -156,10 +159,10 @@ input::placeholder{
 
 .future-forecast {
   background: rgba(24, 24, 27, 0.8);
-  padding: 25px 0;
+  padding: 15px 0;
   padding-left: 10px;
   padding-right: 10px;
-  position: relative;
+  position: fixed;
   bottom: 0;
   display: flex;
   color: white;
@@ -176,8 +179,7 @@ input::placeholder{
   border: 1px solid #c91b1b;
   width: 95%;
   border-radius: 10px;
-  padding: 15px;
-  padding-right: 40px;
+  padding: 10px 15px;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.2);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -192,7 +194,7 @@ input::placeholder{
 }
 
 .future-forecast .today .temp {
-  font-size: 18px;
+  font-size: 15px;
   padding-top: 15px;
 }
 
@@ -241,7 +243,7 @@ input::placeholder{
   }
 
   .date-container .time {
-    font-size: 50px;
+    font-size: 30px;
   }
 
   .date-container #am-pm {

@@ -39,25 +39,32 @@ document.body.style.backgroundImage = "url('morning_image.jpg')";
 const time = new Date();
 
 const hour = time.getHours();
-const Time_12h = hour >= 13 ? hour % 12 : hour;
-const ampm = hour >= 12 ? "PM" : "AM";
-if (Time_12h >= 6 && Time_12h < 12 && ampm == "AM") {
-  document.body.style.backgroundImage = "url('./morning_image.jpg')";
-} else if (Time_12h >= 12 && Time_12h < 17 && ampm == "PM") {
-  document.body.style.backgroundImage = "url('./afternoon_image.jpg')";
-} else if (Time_12h >= 17 && Time_12h < 19 && ampm == "PM") {
-  document.body.style.backgroundImage = "url('./evening_image.jpg')";
-} else if (Time_12h >= 19 && Time_12h < 24 && ampm == "PM") {
-  document.body.style.backgroundImage = "url('./night_image.jpg')";
-} else if (Time_12h >= 0 && Time_12h <= 5 && ampm == "AM") {
-  document.body.style.backgroundImage = "url('./night_image.jpg')";
+if (hour >= 5 && hour < 10) {
+  document.body.style.backgroundImage = `url('./morning_image.jpg')`;
+} else if (hour >= 10 && hour < 12) {
+  document.body.style.backgroundImage = `url('./afternoon_2.jpg')`;
+} else if (hour >= 12 && hour < 17) {
+  document.body.style.backgroundImage = `url('./afternoon_2.jpg')`;
+} else if (hour >= 17 && hour < 19) {
+  document.body.style.backgroundImage = `url('./evening_image.jpg')`;
+} else {
+  document.body.style.backgroundImage = `url('./night_image.jpg')`;
 }
+
+
 
 citybtn.addEventListener("click", function (e) {
   const cityName = city_name.value.trim();
-
-  getWeatherDatabycity(cityName);
-  city_name.value = "";
+ if(!cityName){
+  swal({
+    title: "Please Enter The City Name First",
+    text: "In Order To Get The Weather Deatils.",
+    icon: "success",
+  });
+ }else{
+   getWeatherDatabycity(cityName);
+   city_name.value = "";
+ }
 });
 
 setInterval(() => {
@@ -90,7 +97,6 @@ function getWeatherData() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
         showWeatherData(data);
         lodergif.style.display = "none";
       });
@@ -104,8 +110,17 @@ function getWeatherDatabycity(city_Name) {
     .then((res) => res.json())
     .then((data) => {
         console.log(data)
-      lodergif.style.display = "none";
-      showWeatherData_by_city(data);
+        if(data.cod==404){
+          lodergif.style.display = "none";
+          swal({
+            title: `${data.message}`,
+            text: "Enter Correct City Name",
+            icon: "success",
+          });
+        }else{
+          lodergif.style.display = "none";
+          showWeatherData_by_city(data);
+        }
     });
 }
 
